@@ -27,7 +27,8 @@
     "build": "del-cli ./dist && tsc -p ./tsconfig.json",
     "prod": "yarn run build && yarn run start",
     "dev": "cross-env NODE_ENV=development nodemon ./nodemon.json",
-    "lint": "tslint --project ./tsconfig.json ./src/**/**.ts"
+    "lint": "tslint --project ./tsconfig.json ./src/**/**.ts",
+    "watch": "yarn run build --watch"
   },
   "devDependencies": {
     "@types/async": "^3.0.0",
