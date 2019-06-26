@@ -9,6 +9,9 @@ import { logger } from '@/logger';
 import nconf from 'nconf';
 import getPort from 'get-port';
 import helmet from 'helmet';
+import compression from 'compression';
+import cors from 'cors';
+import { IndexRoute } from '@routes/index-route';
 
 export type MessageHandler = (error: Error | null, success: string) => void;
 
@@ -18,6 +21,7 @@ export class Server {
   constructor(private handler?: MessageHandler) {
     this.app = express();
     this.config();
+    this.routes();
   }
 
   public async start() {
@@ -34,6 +38,8 @@ export class Server {
   }
 
   public routes() {
+    const indexRoutes = new IndexRoute();
+    this.app.use('/api', indexRoutes.router);
   }
 
   private config() {
@@ -41,6 +47,8 @@ export class Server {
     this.app.use(cookieParser());
     this.app.use(morgan('common'));
     this.app.use(helmet());
+    this.app.use(compression());
+    this.app.use(cors());
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json({ type: '*/*' }));
     this.publicDirectory();

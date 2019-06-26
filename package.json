@@ -12,9 +12,13 @@
     "url": "https://www.linkedin.com/in/cristian-camilo-bonilla-20732516b/"
   },
   "keywords": [
-    "Estructuración",
-    "Modelos",
-    "API REST"
+    "Project Structure",
+    "Server Config",
+    "Logger",
+    "RSAEncryption",
+    "Express API REST",
+    "Index Routes",
+    "Document Routes"
   ],
   "license": "SEE LICENSE IN LICENSE",
   "private": false,

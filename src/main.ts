@@ -1,4 +1,4 @@
-import { Server, MessageHandler } from '@/config/initializer/server';
+import { Server, MessageHandler } from '@/config/server';
 import nconf from 'nconf';
 import async from 'async';
 import { logger } from '@/logger';

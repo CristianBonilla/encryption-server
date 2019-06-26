@@ -16,6 +16,12 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@routes/*": [
+        "src/app/routes/*"
       ]
     },
     "typeRoots": [
