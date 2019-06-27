@@ -33,28 +33,34 @@ export class DocumentRoute {
     }).post((request, response) => {
       if (typeof request.body !== 'object' ||
         typeof request.body === 'object' &&
-        typeof request.body.documentEncrypted !== 'string') {
+        (typeof request.body.documentEncrypted !== 'string' ||
+        typeof request.body.name !== 'string')) {
           response.status(400)
           .send({
             status: 'BadRequest',
             statusCode: 400,
-            description: 'Se requiere el documento cifrado correcto para descifrar'
+            description: 'Se requiere el documento cifrado y el nombre'
           });
       } else {
-        const { documentEncrypted } = request.body as { documentEncrypted: string };
+        const { documentEncrypted, name } = request.body as {
+          documentEncrypted: string,
+          name: string
+        };
 
         const privateKeyImported = this.privateKeyImported();
         const decryptedText = this.rsa.decrypted(privateKeyImported, documentEncrypted);
+        const parseNumber = parseInt(decryptedText, 10);
 
         response.status(200).send({
           status: 'OK',
           statusCode: 200,
           description: {
-            documentDecrypted: decryptedText
+            message: '¡DATOS RECIBIDOS!',
+            documentDecrypted: isNaN(parseNumber) ? decryptedText : parseNumber,
+            name
           }
         });
       }
-
     });
 
     this.router.get(`${ this.prefixRoute }/:document`, (request, response) => {
