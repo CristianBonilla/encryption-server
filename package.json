@@ -69,7 +69,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
-    "nconf": "^0.10.0",
+    "nconf": "^0.11.4",
     "node-rsa": "^1.0.5",
     "winston": "^3.2.1"
   }
